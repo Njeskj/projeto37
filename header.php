@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="shortcut icon" href="img/7811666_food_delivery_service_restaurant_order_icon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/196752_shop_buy_shopping_package_cart_icon.ico" type="image/x-icon">
 
     <title>Sistema de Pedidos PHP</title>
 
