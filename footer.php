@@ -1,5 +1,5 @@
 <footer class="mt-4 text-center">
-        <p>&copy; <?php echo date("Y"); ?> Sistema de Pedidos PHP</p>
+        <p>&copy; 2023 - <?php echo date("Y"); ?> Sistema de Pedidos PHP</p>
     </footer>
 
     <!-- Inclua os arquivos JavaScript do Bootstrap (opcional, dependendo do seu uso) -->
