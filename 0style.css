@@ -1,0 +1,81 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    text-align: center;
+    /* Adicione algum espaço ao redor do conteúdo para melhorar a aparência */
+}
+
+.container-pedido {
+    max-width: 600px;
+    /* Defina a largura máxima para 600px */
+    margin: 0 auto;
+    /* Centralize o contêiner na página */
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px 100px;
+    margin-top: 50px;
+}
+
+.container-cadastro {
+    max-width: 600px;
+    /* Defina a largura máxima para 600px */
+    margin: 0 auto;
+    /* Centralize o contêiner na página */
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px 100px;
+    margin-top: 50px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.btn-primary {
+    color: #007bff;
+    background-color: #fff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.container-fluid {
+    padding: 0 0 10px 0;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: 30%;
+    max-width: 100%;
+    max-height: 56.25vw; /* 16:9 aspect ratio */
+}
+
+.carousel {
+    overflow: hidden;
+}
+
+.carousel-indicators {
+    bottom: 15px; /* Ajuste a posição conforme necessário */
+}
+
+.carousel-caption {
+    background-color: rgba(255, 0, 0, 0.300);
+    background: linear-gradient(90deg, 
+    rgba(255,0,0,0.1) 0%, 
+    rgba(255,0,0,0.5) 35%,
+    rgba(255,0,0,0.1) 100%);
+}
