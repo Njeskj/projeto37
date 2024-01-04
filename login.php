@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
+<html lang="pt-br" data-bs-theme="auto">
 
 <head>
     <script src="js/color-modes.js"></script>
@@ -59,6 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.118.2">
+
+    <link rel="shortcut icon" href="img/196752_shop_buy_shopping_package_cart_icon.ico" type="image/x-icon">
+
     <title>Login | Sistema de Pedidos PHP</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
