@@ -20,7 +20,7 @@ $conn->close();
 
 <!-- Formulário de Etapa 1 com Bootstrap 5 -->
 <h2>Pedido</h2>
-<form method="post" action="etapa2.php" class="needs-validation" novalidate>
+<form method="post" action="pedido.php?p=pedido-2" class="needs-validation" novalidate>
     <div class="mb-3">
         <label for="categoria" class="form-label">Selecione a Categoria:</label>
         <select id="categoria" name="categoria" class="form-select" required>
@@ -61,7 +61,6 @@ $conn->close();
 
     <button type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
 </form>
-</div>
 
 <!-- Adicione o script JavaScript para validação no lado do cliente -->
 <script>
