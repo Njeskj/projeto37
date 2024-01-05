@@ -1,47 +1,53 @@
 <?php
-// Incluir o arquivo de conexão com o banco de dados
-include('db.php');
+// Inicie a sessão e verifique se o usuário está autenticado
+// session_start();
 
-// Consultar dados da tabela 'pedidos'
-$query = "SELECT * FROM pedidos";
-$resultado = mysqli_query($conexao, $query);
-
-// Verificar se há erros na consulta
-if (!$resultado) {
-    die("Erro na consulta: " . mysqli_error($conexao));
+if (!isset($_SESSION['id'])) {
+    header('Location: login.php');
+    exit();
 }
+
+// Conecte-se ao banco de dados (substitua pelos seus dados)
+require_once('db.php');
+
+// Consulta SQL para obter a lista de pedidos (substitua pelos seus dados)
+$sql = "SELECT * FROM pedidos";
+$result = $conn->query($sql);
+
+// Feche a conexão com o banco de dados
+$conn->close();
 ?>
 
 
 
 
-<h2>Consulta de Pedidos</h2>
+<div class="container mt-5">
+    <h2>Consulta de Pedidos</h2>
 
-<!-- Tabela para exibir os resultados da consulta -->
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Cliente</th>
-            <th scope="col">Produto</th>
-            <th scope="col">Quantidade</th>
-            <th scope="col">Total</th>
-            <!-- Adicione mais colunas conforme necessário -->
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        // Exibir os resultados da consulta
-        while ($row = mysqli_fetch_assoc($resultado)) {
-            echo "<tr>";
-            echo "<th scope='row'>" . $row['id'] . "</th>";
-            echo "<td>" . $row['cliente_nome'] . "</td>";
-            echo "<td>" . $row['produto'] . "</td>";
-            echo "<td>" . $row['quantidade'] . "</td>";
-            echo "<td>" . $row['total'] . "</td>";
-            // Adicione mais colunas conforme necessário
-            echo "</tr>";
-        }
-        ?>
-    </tbody>
-</table>
+    <?php if ($result->num_rows > 0) : ?>
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Data do Pedido</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = $result->fetch_assoc()) : ?>
+                    <tr>
+                        <td><?php echo $row['id']; ?></td>
+                        <td><?php echo $row['cliente']; ?></td>
+                        <td><?php echo $row['data_pedido']; ?></td>
+                        <td>R$ <?php echo number_format($row['total'], 2, ',', '.'); ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    <?php else : ?>
+        <p>Nenhum pedido encontrado.</p>
+    <?php endif; ?>
+
+    <a href="dashboard.php" class="btn btn-primary mt-3">Voltar para o Painel</a>
+</div>

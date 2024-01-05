@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-<h2>Cadastro de Usuário</h2>
+<h4>Cadastro de Usuário</h4>
 
 <?php
 // Exibir mensagens de sucesso ou erro, se houverem

@@ -2,48 +2,63 @@
 // Iniciar a sessão
 session_start();
 
-// Incluir o arquivo de conexão com o banco de dados
-include('db.php');
+// Conectar ao banco de dados (substitua pelos seus dados)
+require_once('db.php');
+
+// Verificar a conexão
+if ($conn->connect_error) {
+    echo json_encode(['error' => 'Falha na conexão com o banco de dados']);
+    exit();
+}
 
 // Inicializar variáveis para armazenar mensagens
 $mensagem = '';
 $erro = '';
 
-// Verificar se o formulário foi enviado
+// Verificar se o formulário de login foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Coletar dados do formulário
-    $email = htmlspecialchars($_POST["email"]);
-    $senha = htmlspecialchars($_POST["senha"]);
+    $email = isset($_POST['email']) ? $conn->real_escape_string($_POST['email']) : '';
+    $senha = isset($_POST['senha']) ? $_POST['senha'] : '';
 
-    // Consultar o banco de dados para verificar as credenciais
-    $query = "SELECT id, email, senha FROM usuarios WHERE email = '$email'";
-    $resultado = mysqli_query($conn, $query);
+    // Verificar se os campos estão vazios
+    if (empty($email) || empty($senha)) {
+        echo json_encode(['error' => 'Por favor, preencha todos os campos']);
+        exit();
+    }
 
-    if ($resultado) {
-        // Verificar se encontrou um usuário com o email fornecido
-        if (mysqli_num_rows($resultado) == 1) {
-            $usuario = mysqli_fetch_assoc($resultado);
+    // Consulta SQL para verificar as credenciais
+    $sql = "SELECT id, email, senha FROM usuarios WHERE email = '$email'";
+    $result = $conn->query($sql);
 
-            // Verificar se a senha está correta
-            if (password_verify($senha, $usuario['senha'])) {
-                // Autenticação bem-sucedida, criar sessão
-                $_SESSION['usuario_id'] = $usuario['id'];
-                $_SESSION['email'] = $usuario['email'];
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $hashed_senha = $row['senha'];
 
-                // Redirecionar para a página após o login
-                header("Location: dashboard.php");
-                exit();
-            } else {
-                $erro = "Senha incorreta.";
-            }
+        // Verificar a senha
+        if (password_verify($senha, $hashed_senha)) {
+            // Credenciais corretas, iniciar a sessão
+            $_SESSION['id'] = $row['id'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['nome'] = $row['nome'];
+
+            header('Location: dashboard.php');
+            exit();
         } else {
-            $erro = "Email não encontrado.";
+            echo json_encode(['error' => 'Senha incorreta']);
+            exit();
         }
     } else {
-        $erro = "Erro na consulta ao banco de dados: " . mysqli_error($conn);
+        echo json_encode(['error' => 'Usuário não encontrado']);
+        exit();
     }
 }
+
+// Fechar a conexão com o banco de dados
+$conn->close();
 ?>
+
+
 
 
 
@@ -66,10 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
 
-
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <style>

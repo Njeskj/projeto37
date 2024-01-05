@@ -7,6 +7,7 @@
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/limpar-input.js"></script>
 <script src="js/pricing.js"></script>
+<script src="js/valor-total.js"></script>
 
 </body>
 

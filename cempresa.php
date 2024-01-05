@@ -52,7 +52,7 @@ if (!empty($erro)) {
 ?>
 
 <!-- Formulário de cadastro usando classes do Bootstrap -->
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+<form method="post" action="cadastro.php?p=cempresa">
     <div class="mb-3">
         <label for="nome_empresa" class="form-label">Nome da Empresa:</label>
         <input type="text" id="nome_empresa" name="nome_empresa" class="form-control" required>

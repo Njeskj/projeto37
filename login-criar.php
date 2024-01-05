@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $erro = "Este email já está em uso. Por favor, escolha outro.";
     } else {
         // Inserir dados no banco de dados
-        $query = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
+        $query = "INSERT INTO usuarios (nome_completo, email, senha) VALUES ('$nome', '$email', '$senha')";
         $resultado = mysqli_query($conn, $query);
 
         if ($resultado) {

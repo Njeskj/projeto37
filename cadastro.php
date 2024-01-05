@@ -16,7 +16,7 @@ include 'navdash.php';
             $p = $_GET['p'];
 
             // Validar o nome da página para evitar inclusão de arquivos indesejados
-            $paginasPermitidas = ['cformas-pagamento', 'ccategoria', 'cproduto', 'cempresa', 'cusuario', 'ccliente'];
+            $paginasPermitidas = ['cformas-pagamento', 'ccategoria', 'cproduto', 'cempresa', 'cusuario', 'ccliente', 'cadicionais'];
             if (in_array($p, $paginasPermitidas)) {
                 // Incluir a página correspondente
                 include("$p.php");
