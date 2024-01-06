@@ -21,33 +21,32 @@ $conn->close();
 
 
 
-<div class="container mt-5">
-    <h2>Consulta de Pedidos</h2>
 
-    <?php if ($result->num_rows > 0) : ?>
-        <table class="table mt-3">
-            <thead>
+<h2>Consulta de Pedidos</h2>
+
+<?php if ($result->num_rows > 0) : ?>
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Data do Pedido</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while ($row = $result->fetch_assoc()) : ?>
                 <tr>
-                    <th>ID</th>
-                    <th>Cliente</th>
-                    <th>Data do Pedido</th>
-                    <th>Total</th>
+                    <td><?php echo $row['id']; ?></td>
+                    <td><?php echo $row['cliente']; ?></td>
+                    <td><?php echo $row['data_pedido']; ?></td>
+                    <td>R$ <?php echo number_format($row['total'], 2, ',', '.'); ?></td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = $result->fetch_assoc()) : ?>
-                    <tr>
-                        <td><?php echo $row['id']; ?></td>
-                        <td><?php echo $row['cliente']; ?></td>
-                        <td><?php echo $row['data_pedido']; ?></td>
-                        <td>R$ <?php echo number_format($row['total'], 2, ',', '.'); ?></td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    <?php else : ?>
-        <p>Nenhum pedido encontrado.</p>
-    <?php endif; ?>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+<?php else : ?>
+    <p>Nenhum pedido encontrado.</p>
+<?php endif; ?>
 
-    <a href="dashboard.php" class="btn btn-primary mt-3">Voltar para o Painel</a>
-</div>
+<a href="dashboard.php" class="btn btn-primary mt-3">Voltar para o Painel</a>
