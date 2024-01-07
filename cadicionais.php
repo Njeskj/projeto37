@@ -37,16 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Cadastro de Adicionais</title>
-    <!-- Adicione aqui seus links para folhas de estilo ou scripts JavaScript, se necessário -->
-</head>
-
-<body>
     <h4>Cadastro de Adicionais</h4>
 
     <?php
@@ -74,6 +64,3 @@ $conn->close();
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
     <!-- Adicione aqui outros elementos HTML, scripts ou estilos conforme necessário -->
-</body>
-
-</html>

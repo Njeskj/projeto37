@@ -14,12 +14,13 @@ $resultProdutos = $conn->query($sqlProdutos);
 $sqlAdicionais = "SELECT id, nome, valor FROM adicionais";
 $resultAdicionais = $conn->query($sqlAdicionais);
 
-// Fechar a conexão com o banco de dados
-$conn->close();
+// Não feche a conexão aqui, pois você ainda precisa dos resultados depois
+
 ?>
 
 <!-- Formulário de Etapa 1 com Bootstrap 5 -->
 <h2>Pedido</h2>
+<input type="hidden" name="etapa" value="1">
 <form method="post" action="pedido.php?p=pedido-2" class="needs-validation" novalidate>
     <div class="mb-3">
         <label for="categoria" class="form-label">Selecione a Categoria:</label>
@@ -82,3 +83,7 @@ $conn->close();
         });
     })();
 </script>
+<?php
+// Feche a conexão aqui, depois de usar os resultados
+$conn->close();
+?>

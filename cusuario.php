@@ -9,7 +9,7 @@ $erro = '';
 // Verificar se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Coletar dados do formulário
-    $nome_usuario = htmlspecialchars($_POST["nome_usuario"]);
+    $nome = htmlspecialchars($_POST["nome"]);
     $email = htmlspecialchars($_POST["email"]);
     $senha = password_hash($_POST["senha"], PASSWORD_DEFAULT); // Criptografar a senha
     $data_nascimento = $_POST["data_nascimento"];
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $erro = "Preencha todos os campos obrigatórios do formulário.";
     } else {
         // Inserir dados no banco de dados
-        $query = "INSERT INTO usuarios (nome_usuario, email, senha, data_nascimento, admin) VALUES ('$nome_usuario', '$email', '$senha', '$data_nascimento', $admin)";
+        $query = "INSERT INTO usuarios (nome, email, senha, data_nascimento, admin) VALUES ('$nome', '$email', '$senha', '$data_nascimento', $admin)";
         $resultado = mysqli_query($conexao, $query);
 
         if ($resultado) {
@@ -31,13 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
-
-
-
-
-
-
 
 <h4>Cadastro de Usuário</h4>
 
@@ -52,10 +45,10 @@ if (!empty($erro)) {
 ?>
 
 <!-- Formulário de cadastro usando classes do Bootstrap -->
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+<form method="post" action="cadastro.php?p=cusuario">
     <div class="mb-3">
-        <label for="nome_usuario" class="form-label">Nome do Usuário:</label>
-        <input type="text" id="nome_usuario" name="nome_usuario" class="form-control" required>
+        <label for="nome" class="form-label">Nome do Usuário:</label>
+        <input type="text" id="nome" name="nome" class="form-control" required>
     </div>
     <div class="mb-3">
         <label for="email" class="form-label">E-mail:</label>
